@@ -1,0 +1,60 @@
+/* * scrollbar */
+::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #dedede;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #7c7878;
+}
+
+* {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+
+.navbar__container {
+    display: grid !important;
+    grid-template-columns: 1fr 0fr 1fr;
+}
+
+.navbar__nav {
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+
+.navbar__logo {
+    grid-column-start: 2;
+}
+
+.navbar__buttons {
+    grid-column-start: 3;
+}
+
+.button-user::after {
+    display: none;
+}
+
+.button-user__dropdown {
+    width: max-content;
+    max-width: 50vw;
+}
+
+.dropdown-item:active {
+    background-color: var(--bs-dropdown-link-hover-bg);
+}
+
+/* * Desktop */
+@media (min-width: 768px) {
+    .navbar__btn-plus {
+        border-radius: var(--bs-border-radius-sm) !important;
+    }
+
+    .navbar__btn-plus::after {
+        content: "Adicionar";
+    }
+}

@@ -1,0 +1,12 @@
+/* * Desktop */
+@media (min-width: 576px) {
+    .container-all {
+        background-color: #f9fafb;
+    }
+
+    .login__form {
+        max-width: 500px;
+        background-color: #fff;
+        border: 2px var(--bs-border-style) var(--bs-border-color) !important;
+    }
+}

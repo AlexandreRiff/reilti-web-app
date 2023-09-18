@@ -1,0 +1,29 @@
+.add__label {
+    font-size: 0.9rem;
+}
+
+.add-image__box {
+    border: var(--bs-border-width) dashed var(--bs-border-color);
+}
+
+.add-image__preview {
+    display: none;
+}
+
+.add-image__icon {
+    color: gray;
+}
+
+.add-image__click-text {
+    cursor: pointer;
+}
+
+.add__buttons {
+    flex-direction: column;
+}
+
+@media (min-width: 576px) {
+    .add__buttons {
+        flex-direction: row;
+    }
+}
