@@ -65,6 +65,10 @@ const transformarObjetoParaTree = (obj, parentId = "#") => {
                 parent: parentId,
                 text: key,
                 icon: icon,
+                state: {
+                    opened: true,
+                    disabled: true,
+                },
             });
             transformarObjetoParaTree(obj[key], id.toString());
         } else {
