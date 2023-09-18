@@ -45,12 +45,6 @@
                                 <i class="bi bi-eye me-1"></i>
                                 Visualizar
                             </a>
-                            <button type="button"
-                                class="btn btn-primary rounded-1 fw-medium text-capitalize py-2 d-none">
-                                <i class="bi bi-share me-1"></i>
-                                Compartilhar
-                            </button>
-
 
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary rounded-1 fw-medium text-capitalize py-2"
@@ -107,17 +101,13 @@
                                         </li>
                                     @endcan
 
-
                                     @can('delete', $resource)
                                         <li>
-                                            <form action="{{ route('resource.destroy', $resource->id) }}" method="POST">
-                                                @csrf()
-                                                @method('delete')
-                                                <button class="dropdown-item">
-                                                    <i class="bi bi-trash3 me-2"></i>
-                                                    Excluir
-                                                </button>
-                                            </form>
+                                            <button class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#modalConfirmDelete">
+                                                <i class="bi bi-trash3 me-2"></i>
+                                                Excluir
+                                            </button>
                                         </li>
                                     @endcan
 
@@ -285,6 +275,38 @@
             </div>
         </div>
     </section>
+
+    <!-- modal confirm delete -->
+    <div class="modal fade" id="modalConfirmDelete">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">
+                        <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                        Atenção
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Deseja realmente excluir este recurso?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="bi bi-x-lg"></i>
+                        Cancelar
+                    </button>
+                    <form action="{{ route('resource.destroy', $resource->id) }}" method="POST">
+                        @csrf()
+                        @method('delete')
+                        <button type="submit" class="btn btn-outline-primary">
+                            <i class="bi bi-check-lg"></i>
+                            Confirmar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @if (session('error'))
         <x-toast class="bg-danger-subtle">
