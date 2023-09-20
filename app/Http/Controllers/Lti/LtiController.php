@@ -17,7 +17,7 @@ class LtiController extends Controller
     {
     }
 
-    public function launch(Request $request, ResourceFileService $resourceFileService): BinaryFileResponse|Exception
+    public function launch(Request $request, ResourceFileService $resourceFileService): View|BinaryFileResponse|Exception
     {
         $resource = Resource::find($request->resource);
 
