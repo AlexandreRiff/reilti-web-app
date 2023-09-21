@@ -19,13 +19,10 @@ class HtmlResourceFile extends ResourceFile
 
     public function validate(Validator $validator): array
     {
-        $file = $validator->safe()->file;
-        $fileInitial = request()->fileInitial;
-
         return [
             $validator->sometimes(
                 'file',
-                'mimes:zip',
+                'bail|mimes:zip',
                 fn () => true
             ),
             $validator->sometimes(
@@ -33,7 +30,10 @@ class HtmlResourceFile extends ResourceFile
                 'required|string',
                 fn () => true
             ),
-            function () use ($validator, $file, $fileInitial) {
+            function () use ($validator) {
+                $file = $validator->safe()->file;
+                $fileInitial = $validator->safe()->fileInitial;
+
                 $zip = Zip::open($file);
 
                 // * remove the first /
@@ -47,8 +47,7 @@ class HtmlResourceFile extends ResourceFile
                         'Arquivo de incialização inválido'
                     );
                 }
-            }
-
+            },
         ];
     }
 
