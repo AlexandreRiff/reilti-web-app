@@ -17,5 +17,8 @@ class UserAndRoleSeeder extends Seeder
         foreach ($users as $user) {
             $user->assignRole('teacher');
         }
+
+        $user = User::firstWhere('email', 'admin@reilti.com');
+        $user->assignRole('admin');
     }
 }
