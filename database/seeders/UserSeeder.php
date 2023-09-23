@@ -16,16 +16,16 @@ class UserSeeder extends Seeder
             'name' => 'Administrator',
             'email' => 'admin@reilti.com',
             'email_verified_at' => now(),
-            'password' => '@Admin#!.2023',
+            'password' => '$2y$10$towACVW9k1ORpPwXju3l2uCU7Ko9OvR2w9Rlo60LMG5eogyEKaehG',
         ]);
 
         User::create([
-            'name' => 'Alexandre Riff da Costa',
-            'email' => 'alexandre.rdcosta@gmail.com',
+            'name' => 'Usuario Teste 1',
+            'email' => 'usuarioteste1@reilti.com',
             'email_verified_at' => now(),
-            'password' => '05121995',
+            'password' => '$2y$10$hSQ3oom3gNsK58b3Bom0seG2/CMwEeGQy9zcjaB8mTo0QtzFk3mI2',
         ]);
 
-        User::factory()->count(8)->create();
+        //User::factory()->count(8)->create();
     }
 }
