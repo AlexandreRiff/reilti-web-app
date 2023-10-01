@@ -1,4 +1,4 @@
-<x-layout.default title="Recuperar Senha">
+<x-layout.default title="Redefinir Senha">
 
     <x-slot name="styles">
         <link rel="stylesheet" href="{{ asset('css/auth/index.css') }}">
@@ -13,6 +13,7 @@
 
                 @csrf()
                 <input type="hidden" name="token" value="{{ $token }}">
+                <input type="hidden" name="email" value="{{ $email }}">
 
                 @if (session('error'))
                     <div class="alert alert-danger text-center" role="alert">
@@ -21,21 +22,9 @@
                 @endif
 
                 <div class="form-floating mb-3">
-                    <input type="email" placeholder="" name="email" id="login__email"
-                        class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" />
-                    <label for="login__email" class="fw-light">Email</label>
-
-                    @error('email')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-
-                </div>
-                <div class="form-floating mb-3">
                     <input type="password" placeholder="" name="password" id="login__password"
                         class="form-control @error('password') is-invalid @enderror" />
-                    <label for="login__password" class="fw-light">Senha</label>
+                    <label for="login__password" class="text-capitalize fw-light">Nova Senha</label>
 
                     @error('password')
                         <div class="invalid-feedback">
@@ -44,13 +33,15 @@
                     @enderror
 
                 </div>
+
                 <div class="form-floating mb-5">
-                    <input type="password" placeholder="" name="password_confirmation" id="login__password"
+                    <input type="password" placeholder="" name="password_confirmation" id="login__password-confirmation"
                         class="form-control @error('password') is-invalid @enderror" />
-                    <label for="login__password" class="fw-light">Confirmar Senha</label>
+                    <label for="login__password-confirmation" class="text-capitalize fw-light">Confirmar Nova
+                        Senha</label>
                 </div>
                 <button type="submit" class="btn btn-primary w-100 p-3 rounded-2 fw-semibold text-uppercase">
-                    Resetar Senha
+                    Redefinir Senha
                 </button>
             </form>
         </div>

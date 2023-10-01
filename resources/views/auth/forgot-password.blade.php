@@ -1,4 +1,4 @@
-<x-layout.default title="Redefinir Senha">
+<x-layout.default title="Recuperar Senha">
 
     <x-slot name="styles">
         <link rel="stylesheet" href="{{ asset('css/auth/index.css') }}">
@@ -27,7 +27,7 @@
                     <div class="form-floating mb-5">
                         <input type="email" placeholder="" name="email" id="login__email"
                             class="form-control @error('email') is-invalid @enderror" />
-                        <label for="login__email" class="fw-light">Email</label>
+                        <label for="login__email" class="text-capitalize fw-light">Email</label>
 
                         @error('email')
                             <div class="invalid-feedback">
@@ -36,7 +36,7 @@
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-primary w-100 p-3 rounded-2 fw-semibold text-uppercase mb-3">
-                        Redefinir senha
+                        Enviar Email
                     </button>
                     <a href="{{ route('auth.index') }}"
                         class="d-block fw-semibold text-center text-uppercase text-decoration-none">

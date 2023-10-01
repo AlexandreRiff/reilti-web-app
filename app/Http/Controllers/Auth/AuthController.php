@@ -73,9 +73,12 @@ class AuthController extends Controller
         return back()->withError(__($status));
     }
 
-    public function resetPasswordShow(string $token)
+    public function resetPasswordShow(Request $request)
     {
-        return view('auth.reset-password', ['token' => $token]);
+        $token = $request->token;
+        $email = $request->email;
+
+        return view('auth.reset-password', compact('token', 'email'));
     }
 
     public function resetPassword(Request $request)
