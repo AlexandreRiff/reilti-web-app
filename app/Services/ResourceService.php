@@ -157,7 +157,9 @@ class ResourceService
 
             if ($image) {
 
-                $this->imageResourceFile->delete($resource->thumbnail);
+                if ($resource->thumbnail) {
+                    $this->imageResourceFile->delete($resource->thumbnail);
+                }
 
                 $pathThumbnail = $this->imageResourceFile->save($image);
 
