@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
@@ -49,6 +50,31 @@ class AuthController extends Controller
         return redirect()->route('auth.index');
     }
 
+    public function registerShow()
+    {
+        return view('auth.register');
+    }
+
+    public function register(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'min:3', 'max:255'],
+            'email' => ['required', 'email', 'unique:App\Models\User'],
+            'password' => ['required', 'min:8', 'confirmed'],
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $user = User::create($validated);
+            $user->assignRole('teacher');
+            DB::commit();
+        } catch (\Exception $error) {
+            DB::rollBack();
+            return back()->withError('não foi possível realizar o cadastro');
+        }
+
+        return redirect()->route('auth.index')->withSuccess('cadastro realizado com sucesso');
+    }
 
     public function forgotPasswordShow()
     {
@@ -58,10 +84,7 @@ class AuthController extends Controller
     public function forgotPassword(Request $request)
     {
         $emailValidated = $request->validate([
-            'email' => [
-                'required',
-                'email'
-            ]
+            'email' => ['required', 'email']
         ]);
 
         $status = Password::sendResetLink($emailValidated);
@@ -84,9 +107,9 @@ class AuthController extends Controller
     public function resetPassword(Request $request)
     {
         $credentialsValidated = $request->validate([
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:8|confirmed',
+            'token' => ['required'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:8', 'confirmed'],
         ]);
 
         $status = Password::reset(

@@ -30,6 +30,16 @@ Route::get('/', function () {
 // -----------------------------------------------------------------------------
 Route::controller(AuthController::class)
     ->group(function () {
+        // * Register
+        Route::get('register', 'registerShow')
+            ->name('auth.register')
+            ->middleware('guest');
+
+        Route::post('register', 'register')
+            ->name('auth.store')
+            ->middleware('guest');
+        // * End Register'
+
         // * Login
         Route::get('login', 'index')
             ->name('auth.index');
@@ -43,19 +53,19 @@ Route::controller(AuthController::class)
         // * End Login
 
         // * Password Recovery
-        Route::get('/forgot-password', 'forgotPasswordShow')
+        Route::get('forgot-password', 'forgotPasswordShow')
             ->name('password.request')
             ->middleware('guest');
 
-        Route::post('/forgot-password', 'forgotPassword')
+        Route::post('forgot-password', 'forgotPassword')
             ->name('password.email')
             ->middleware('guest');
 
-        Route::get('/reset-password/{token}', 'resetPasswordShow')
+        Route::get('reset-password/{token}', 'resetPasswordShow')
             ->name('password.reset')
             ->middleware('guest');
 
-        Route::post('/reset-password', 'resetPassword')
+        Route::post('reset-password', 'resetPassword')
             ->name('password.update')
             ->middleware('guest');
         // * End Password Recovery
