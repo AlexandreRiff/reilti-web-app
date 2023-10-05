@@ -36,13 +36,21 @@
                     @enderror
 
                 </div>
-                <div class="form-floating mb-5">
-                    <a href="{{ route('password.request') }}" class="fw-light text-decoration-none">Esqueceu sua
-                        senha?</a>
+                <div class="form-floating mb-4">
+                    <a href="{{ route('password.request') }}" class="fw-light text-decoration-none form__link">
+                        Esqueceu sua senha?
+                    </a>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 p-3 rounded-2 fw-semibold text-uppercase">
+                <button type="submit" class="btn btn-sm btn-primary w-100 rounded-2 fw-semibold text-uppercase mb-2 p-2">
                     Entrar
                 </button>
+
+                <hr >
+
+                <a href="{{ route('auth.register') }}"
+                    class="btn btn-sm btn-outline-primary w-100 rounded-2 fw-semibold text-uppercase mt-2 p-2">
+                    Cadastre-se
+                </a>
             </form>
         </div>
     </main>
