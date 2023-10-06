@@ -45,7 +45,7 @@
                             <label for="filter__tags" class="fw-light filter__label">Tags</label>
                         </div>
                         <button type="submit"
-                            class="btn btn-primary d-flex align-items-center justify-content-center w-100 py-3 px-3 rounded-1 text-capitalize">
+                            class="btn btn-sm btn-primary d-flex align-items-center justify-content-center w-100 p-2 rounded-1 fw-medium text-capitalize filter__btn">
                             <i class="bi bi-search me-2"></i>
                             Buscar
                         </button>
@@ -58,9 +58,8 @@
             <div class="row m-0 px-3 pb-3 ps-md-4 pe-md-0">
                 <div
                     class="col-12 sticky-top d-flex flex-column flex-md-row align-items-center gap-4 justify-content-between px-0 py-4 bg-white resources__header">
-
                     <button
-                        class="btn btn-outline-primary align-items-center justify-content-center d-md-none py-1 rounded-1 fw-bold text-uppercase w-100 resources__btn-filter"
+                        class="btn btn-outline-primary align-items-center justify-content-center d-md-none w-100 py-1 rounded-1 fw-bold text-uppercase resources__btn-filter"
                         type="button" data-bs-toggle="offcanvas" data-bs-target="#filter__offcanvas">
                         <i class="bi bi-filter me-1 fs-5"></i>
                         Filtrar
@@ -72,10 +71,9 @@
                         <option value="1">Ordem alfabética</option>
                         <option value="2">Últimos adicionados</option>
                     </select> --}}
-
                 </div>
 
-                @foreach ($resources as $resource)
+                @forelse ($resources as $resource)
                     <div class="col-xl-4 col-lg-5 col-md-10 col-sm-12 px-0 px-md-2 py-2">
                         <div class="card h-100">
                             <div class="ratio ratio-16x9">
@@ -89,12 +87,12 @@
 
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title fs-6 fw-semibold text-capitalize">
-                                    {{ $resource->title }}</h5>
+                                <h5 class="card-title fw-semibold text-capitalize resources-card__title">
+                                    {{ $resource->title }}
+                                </h5>
                                 @if (empty($resource->description))
                                     <p class="card-text fw-light resources-card__text text-capitalize">
                                         Sem descrição.
-                                        {{ $resource->description }}
                                     </p>
                                 @else
                                     <p class="card-text fw-light resources-card__text text-capitalize">
@@ -109,14 +107,20 @@
                                         class="text-body-secondary resources-card__text--small">{{ $resource->updated_at }}</small>
                                 </p>
                                 <a href="{{ route('resource.show', $resource->id) }}"
-                                    class="btn btn-outline-primary rounded-1 resources-card__btn text-capitalize">
+                                    class="btn btn-sm btn-outline-primary rounded-1 text-capitalize resources-card__btn">
                                     <i class="bi bi-eye-fill me-1"></i>
                                     Ver mais
                                 </a>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="col">
+                        <p class="m-0 text-center">
+                            Nenhum recurso encontrado.
+                        </p>
+                    </div>
+                @endforelse
 
                 <div class="col-12 px-0 px-md-2 pt-4">
                     {{ $resources->onEachSide(2)->links() }}
@@ -126,21 +130,13 @@
     </div>
 
     @if (session('error'))
-        <x-toast class="bg-danger-subtle">
-            <p class="m-0 fs-6 text-center text-capitalize">
-                <i class="bi bi-exclamation-triangle-fill me-1"></i>
-                {{ session('error') }}
-            </p>
-        </x-toast>
+        <x-toast.error :message="session('error')">
+        </x-toast.error>
     @endif
 
     @if (session('success'))
-        <x-toast class="bg-success-subtle">
-            <p class="m-0 fs-6 text-center text-capitalize">
-                <i class="bi bi-check-circle-fill me-1"></i>
-                {{ session('success') }}
-            </p>
-        </x-toast>
+        <x-toast.success :message="session('success')">
+        </x-toast.success>
     @endif
 
 </x-layout.app>

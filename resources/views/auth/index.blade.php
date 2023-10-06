@@ -1,16 +1,16 @@
 <x-layout.default title="Login">
 
     <x-slot name="styles">
-        <link rel="stylesheet" href="{{ asset('css/auth/index.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
     </x-slot>
 
     <main class="row align-items-center justify-content-center vh-100 m-0">
         <div class="col d-flex flex-column align-items-center justify-content-center">
-            <form action="{{ route('auth.login') }}" method="POST" novalidate
-                class="w-100 p-sm-5 p-3 rounded-2 login__form">
+            <form action="{{ route('auth.login') }}" method="POST" novalidate class="w-100 p-3 p-sm-5 rounded-2 form">
                 @csrf()
 
-                <img src="{{ asset('img/logotipo.png') }}" alt="Logotipo" class="img-fluid d-block mx-auto mb-5 w-50" />
+                <img src="{{ asset('img/logotipo.png') }}" alt="Logotipo"
+                    class="img-fluid d-block mx-auto mb-5 form__logo" />
 
                 <div class="form-floating mb-3">
                     <input type="email" placeholder="" name="email" id="login__email"
@@ -41,11 +41,12 @@
                         Esqueceu sua senha?
                     </a>
                 </div>
-                <button type="submit" class="btn btn-sm btn-primary w-100 rounded-2 fw-semibold text-uppercase mb-2 p-2">
+                <button type="submit"
+                    class="btn btn-sm btn-primary w-100 rounded-2 fw-semibold text-uppercase mb-2 p-2">
                     Entrar
                 </button>
 
-                <hr >
+                <hr />
 
                 <a href="{{ route('auth.register') }}"
                     class="btn btn-sm btn-outline-primary w-100 rounded-2 fw-semibold text-uppercase mt-2 p-2">
@@ -55,13 +56,14 @@
         </div>
     </main>
 
+    @if (session('error'))
+        <x-toast.error :message="session('error')">
+        </x-toast.error>
+    @endif
+
     @if (session('success'))
-        <x-toast class="bg-success-subtle">
-            <p class="m-0 fs-6 text-center text-capitalize">
-                <i class="bi bi-check-circle-fill me-1"></i>
-                {{ session('success') }}
-            </p>
-        </x-toast>
+        <x-toast.success :message="session('success')">
+        </x-toast.success>
     @endif
 
 </x-layout.default>

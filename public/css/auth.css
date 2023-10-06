@@ -1,10 +1,18 @@
+.form__logo {
+    width: 35%;
+}
+
+.form__link {
+    font-size: 0.9rem;
+}
+
 /* * Desktop */
 @media (min-width: 576px) {
     .container-all {
         background-color: #f9fafb;
     }
 
-    .login__form {
+    .form {
         max-width: 500px;
         background-color: #fff;
         border: 2px var(--bs-border-style) var(--bs-border-color) !important;

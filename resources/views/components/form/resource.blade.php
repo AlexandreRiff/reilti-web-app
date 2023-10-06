@@ -129,7 +129,7 @@
     <!-- DIRECTORY TREE -->
     <div class="mb-3 d-none" data-js="sectionDirectoryTree">
         <p class="mb-2 add__label">Selecione o arquivo de inicialização *</p>
-        <div class="p-3 border border-1 rounded-2" data-js="directoryTree"></div>
+        <div class="p-3 border border-1 rounded-2 fs-09" data-js="directoryTree"></div>
         <input type="hidden" name="fileInitial" value="" data-js="inputFileInitial" />
         @error('fileInitial')
             <div class="invalid-feedback">
@@ -165,7 +165,7 @@
                     @endisset" />
 
             <p data-js="boxViewImageInner"
-                class="d-flex flex-column align-items-center justify-content-center m-0
+                class="d-flex flex-column align-items-center justify-content-center m-0 fs-095
                     @isset($resource->thumbnail)
                         d-none
                     @endisset">
@@ -197,11 +197,12 @@
 
     <!-- BOTOES -->
     <div class="d-flex justify-content-between gap-4 mt-4 mt-sm-5 add__buttons">
-        <a href="{{ route('resource.index') }}" class="btn btn-primary py-2 px-3 rounded-1 text-capitalize">
+        <a href="{{ route('resource.index') }}"
+            class="btn btn-primary px-3 py-2 rounded-1 text-capitalize fw-medium fs-095">
             <i class="bi bi-x-lg me-1"></i>
             Cancelar
         </a>
-        <button type="submit" class="btn btn-primary py-2 px-3 rounded-1 text-capitalize">
+        <button type="submit" class="btn btn-primary px-3 py-2 rounded-1 text-capitalize fw-medium fs-095">
             <i class="bi bi-save me-1"></i>
             Salvar
         </button>

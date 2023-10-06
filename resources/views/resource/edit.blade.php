@@ -9,8 +9,7 @@
         <div class="container p-0">
             <div class="row justify-content-center m-0 py-md-5">
                 <div class="col-lg-8 col-sm-12 p-0">
-
-                    <h1 class="me-2 px-3 px-3 pb-3 pt-5 pt-md-0 fs-2 text-center text-md-start text-capitalize">
+                    <h1 class="me-2 px-3 pb-3 pt-5 pt-md-0 fs-3 text-center text-md-start text-capitalize">
                         Editar Recurso
                     </h1>
 

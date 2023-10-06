@@ -2,6 +2,10 @@
     font-size: 0.9rem;
 }
 
+.filter__btn {
+    font-size: 0.95rem;
+}
+
 .resources__header {
     top: calc(99px);
     z-index: 1;
@@ -19,12 +23,16 @@
     font-size: 0.9rem;
 }
 
+.resources-card__title {
+    font-size: 0.95rem;
+}
+
 .resources-card__text {
     display: -webkit-box;
     overflow: hidden;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .resources-card__text--small {
@@ -32,6 +40,8 @@
 }
 
 .resources-card__btn {
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
     font-size: 0.9rem;
 }
 

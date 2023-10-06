@@ -22,6 +22,20 @@
     flex-direction: column;
 }
 
+/* * Bootstrap */
+.form-control {
+    font-size: 0.9rem;
+}
+
+.form-select {
+    font-size: 0.9rem;
+}
+
+.form-check {
+    font-size: 0.9rem;
+}
+/* * End Bootstrap */
+
 @media (min-width: 576px) {
     .add__buttons {
         flex-direction: row;
