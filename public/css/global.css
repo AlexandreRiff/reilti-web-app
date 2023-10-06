@@ -11,12 +11,40 @@
 ::-webkit-scrollbar-thumb {
     background-color: #7c7878;
 }
+/* * End scrollbar */
 
 * {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
 }
 
+/* * Bootstrap */
+.form-floating > .form-control {
+    height: calc(3rem + calc(var(--bs-border-width) * 2));
+    min-height: calc(3rem + calc(var(--bs-border-width) * 2));
+    font-size: 0.9rem;
+}
+
+.form-floating > label {
+    font-size: 0.9rem;
+}
+/* * End Bootstrap */
+
+/* * Utils */
+.fs-09 {
+    font-size: 0.9rem !important;
+}
+
+.fs-095 {
+    font-size: 0.95rem !important;
+}
+
+.fs-110 {
+    font-size: 1.1rem !important;
+}
+/* * End Utils */
+
+/* * Header */
 .navbar__container {
     display: grid !important;
     grid-template-columns: 1fr 0fr 1fr;
@@ -44,13 +72,18 @@
     max-width: 50vw;
 }
 
-.dropdown-item:active {
+.button-user-dropdown__item {
+    font-size: 0.9rem;
+}
+
+.button-user-dropdown__item:active {
     background-color: var(--bs-dropdown-link-hover-bg);
 }
 
 /* * Desktop */
 @media (min-width: 768px) {
     .navbar__btn-plus {
+        font-size: 0.9rem;
         border-radius: var(--bs-border-radius-sm) !important;
     }
 
@@ -58,3 +91,4 @@
         content: "Adicionar";
     }
 }
+/* * End Header */

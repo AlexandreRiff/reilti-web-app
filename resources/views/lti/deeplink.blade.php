@@ -15,7 +15,7 @@
                                         class="d-flex flex-column flex-sm-row align-items-center justify-content-between p-3 gap-3">
                                         <h2 class="fs-6 m-0">{{ $resource->title }}</h2>
                                         <button type="submit"
-                                            class="btn btn-primary py-2 px-3 rounded-1 d-flex align-items-center justify-content-center">
+                                            class="btn btn-primary d-flex align-items-center justify-content-center px-3 py-2 rounded-1">
                                             <i class="bi bi-link me-1 fs-5"></i>
                                             Vincular
                                         </button>
