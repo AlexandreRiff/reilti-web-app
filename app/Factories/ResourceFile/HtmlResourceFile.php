@@ -28,24 +28,26 @@ class HtmlResourceFile extends ResourceFile
             $validator->sometimes(
                 'fileInitial',
                 'required|string',
-                fn () => true
+                fn () => isset($validator->safe()->file)
             ),
             function () use ($validator) {
-                $file = $validator->safe()->file;
-                $fileInitial = $validator->safe()->fileInitial;
+                if (isset($validator->safe()->file)) {
+                    $file = $validator->safe()->file;
+                    $fileInitial = $validator->safe()->fileInitial;
 
-                $zip = Zip::open($file);
+                    $zip = Zip::open($file);
 
-                // * remove the first /
-                $fileInitial = Str::after($fileInitial, '/');
+                    // * remove the first /
+                    $fileInitial = Str::after($fileInitial, '/');
 
-                $fileExists = array_search($fileInitial, $zip->listFiles());
+                    $fileExists = array_search($fileInitial, $zip->listFiles());
 
-                if (!$fileExists) {
-                    $validator->errors()->add(
-                        'fileInitial',
-                        'Arquivo de incialização inválido'
-                    );
+                    if (!$fileExists) {
+                        $validator->errors()->add(
+                            'fileInitial',
+                            'Arquivo de incialização inválido'
+                        );
+                    }
                 }
             },
         ];
