@@ -31,6 +31,10 @@
 /* * End Bootstrap */
 
 /* * Utils */
+.fs-08 {
+    font-size: 0.85rem !important;
+}
+
 .fs-09 {
     font-size: 0.9rem !important;
 }
