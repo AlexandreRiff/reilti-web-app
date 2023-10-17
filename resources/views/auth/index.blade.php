@@ -12,9 +12,15 @@
                 <img src="{{ asset('img/logotipo.png') }}" alt="Logotipo"
                     class="img-fluid d-block mx-auto mb-5 form__logo" />
 
+                @if (session('error'))
+                    <div class="alert alert-danger text-center fs-09">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
                 <div class="form-floating mb-3">
                     <input type="email" placeholder="" name="email" id="login__email"
-                        class="form-control @error('email') is-invalid @enderror"" />
+                        class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" />
                     <label for="login__email" class="fw-light">Email</label>
 
                     @error('email')
@@ -55,11 +61,6 @@
             </form>
         </div>
     </main>
-
-    @if (session('error'))
-        <x-toast.error :message="session('error')">
-        </x-toast.error>
-    @endif
 
     @if (session('success'))
         <x-toast.success :message="session('success')">
