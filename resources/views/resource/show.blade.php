@@ -155,7 +155,7 @@
     </section>
 
     <!-- Modal Share-->
-    <div class="modal fade" id="modalShare">
+    <div class="modal fade" id="modalShare" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -164,8 +164,33 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="d-flex align-items-center justify-content-between fs-095">
-                        https://dev.ltiaas.com/lti/launch/?resource={{ $resource->id }}
+                    <div class="d-flex flex-column align-items-start justify-content-center w-100">
+                        <div class="mb-4">
+                            <p class="m-0 mb-1 fs-095">
+                                Utilize o link abaixo para compartilhamento via LTI:
+                            </p>
+                            <p class="m-0 fw-bold fs-095">
+                                {{ config('lti.ltiaas.url') }}/lti/launch/?resource={{ $resource->id }}
+                            </p>
+                        </div>
+                        <div class="alert alert-primary m-0 w-100" role="alert">
+                            <p class="m-0 mb-2 fw-light fs-08">Observação: Link exlusivo para compartilhamento via LTI.
+                            </p>
+                            <p class="m-0 mb-2 fw-light fs-08">
+                                Para realizar o cadastro da ferramenta LTI em uma plataforma, por favor, siga o
+                                <a href="https://ltiaas.com/guides/lms/introduction" target="__blank">
+                                    tutorial
+                                </a>
+                                disponível ou entre em contato com o administrador.
+                            </p>
+                            <p class="m-0 fw-light fs-08">
+                                Link para utilização do registro dinâmico:
+                                <span class="fw-medium">{{ config('lti.ltiaas.url') }}/register</span> (consulte o
+                                <a href="https://ltiaas.com/guides/lms/introduction#dynamic-registration---the-easy-way-out"
+                                    target="__blank">tutorial</a>).
+                            </p>
+                        </div>
+
                     </div>
                 </div>
                 <div class="modal-footer">
