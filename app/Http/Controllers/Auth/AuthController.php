@@ -32,7 +32,7 @@ class AuthController extends Controller
         $isValidUser = auth()->attempt($credentialsValidated);
 
         if (!$isValidUser) {
-            return redirect()->route('auth.index');
+            return redirect()->route('auth.index')->withInput()->withError('Email ou senha incorretos');
         }
 
         $request->session()->regenerate();
@@ -70,10 +70,10 @@ class AuthController extends Controller
             DB::commit();
         } catch (\Exception $error) {
             DB::rollBack();
-            return back()->withError('não foi possível realizar o cadastro');
+            return back()->withError('Não foi possível realizar o cadastro');
         }
 
-        return redirect()->route('auth.index')->withSuccess('cadastro realizado com sucesso');
+        return redirect()->route('auth.index')->withSuccess('Cadastro realizado com sucesso');
     }
 
     public function forgotPasswordShow()
