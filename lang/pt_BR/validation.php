@@ -213,7 +213,16 @@ return [
         'modality' => 'modalidade',
         'category' => 'categoria',
         'blood_type' => 'tipo sanguíneo',
-        'birth_date' => 'data de nascimento'
+        'birth_date' => 'data de nascimento',
+
+        'techArea' => 'área tecnológica',
+        'course' => 'curso',
+        'discipline' => 'disciplina',
+        'language' => 'idioma',
+        'media' => 'tipo de recurso',
+        'file' => 'upload',
+        'fileInitial' => 'arquivo de inicialização',
+        'image' => 'imagem',
     ],
 
 ];
