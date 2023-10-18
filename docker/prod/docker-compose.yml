@@ -1,0 +1,62 @@
+version: "3"
+
+services:
+    rei-app:
+        build:
+            context: ../..
+            dockerfile: ./docker/Dockerfile
+        image: rei-app
+        container_name: rei-app
+        depends_on:
+            postgres:
+                condition: service_started
+            redis:
+                condition: service_started
+        volumes:
+            - rei-storage-volume:/app/storage/app
+        ports:
+            - 80:80
+        networks:
+            - app
+            - postgres
+            - redis
+        restart: on-failure
+
+    postgres:
+        image: postgres:latest
+        environment:
+            - POSTGRES_USER=rei
+            - POSTGRES_PASSWORD=rei
+            - POSTGRES_DB=rei
+        container_name: postgres
+        volumes:
+            - postgres-volume:/var/lib/postgresql/data
+        ports:
+            - 5432:5432
+        networks:
+            - postgres
+        restart: on-failure
+
+    redis:
+        image: redis:alpine
+        container_name: redis
+        command: "redis-server --requirepass rei"
+        volumes:
+            - redis-volume:/data
+        ports:
+            - 6379:6379
+        networks:
+            - redis
+        restart: on-failure
+
+volumes:
+    rei-storage-volume: {}
+    postgres-volume: {}
+    redis-volume: {}
+networks:
+    app:
+        driver: bridge
+    postgres:
+        driver: bridge
+    redis:
+        driver: bridge
