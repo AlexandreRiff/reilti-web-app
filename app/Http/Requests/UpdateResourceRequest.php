@@ -32,9 +32,9 @@ class UpdateResourceRequest extends FormRequest
             'discipline' =>  ['nullable', 'string', 'min:3', 'max:255'],
             'language' => Rule::in(Language::pluck('id')),
             'description' => ['nullable', 'string', 'min:3'],
-            'file' => ['nullable', 'file'],
+            'file' => ['nullable', 'file', 'max:50000'],
             'tags' => ['nullable', 'string', 'min:3', 'max:255'],
-            'image' => ['nullable', 'image'],
+            'image' => ['nullable', 'image', 'max:50000'],
             'visibility' => Rule::in(['public', 'private']),
         ];
     }
@@ -50,6 +50,19 @@ class UpdateResourceRequest extends FormRequest
 
         return [
             ...$resourceFile->validate($validator),
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'file.max' => 'O campo :attribute não pode ser superior a 50MB.',
+            'image.max' => 'O campo :attribute não pode ser superior a 50MB.',
         ];
     }
 }
