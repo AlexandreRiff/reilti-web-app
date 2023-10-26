@@ -101,14 +101,14 @@ class Resource extends Model
             ->when($title, fn (Builder $query) => $query->where('title', 'like', "%{$title}%"))
 
             ->when($techArea, fn (Builder $query) => $query->whereHas(
-                'techArea',
+                'techAreas',
                 fn ($query) => $query->where('name', 'like', "%{$techArea}%")
             ))
             ->when(
                 $course,
                 fn (Builder $query) =>
                 $query->whereHas(
-                    'course',
+                    'courses',
                     fn (Builder $query) =>
                     $query->where('name', 'like', "%{$course}%")
                 )
@@ -117,7 +117,7 @@ class Resource extends Model
                 $discipline,
                 fn (Builder $query) =>
                 $query->whereHas(
-                    'discipline',
+                    'disciplines',
                     fn (Builder $query) =>
                     $query->where('name', 'like', "%{$discipline}%")
                 )
@@ -135,7 +135,7 @@ class Resource extends Model
                 $tags,
                 fn (Builder $query) =>
                 $query->whereHas(
-                    'tag',
+                    'tags',
                     fn (Builder $query) =>
                     $query->where('name', 'like', "%{$tags}%")
                 )
