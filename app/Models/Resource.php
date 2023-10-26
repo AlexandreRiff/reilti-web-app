@@ -98,11 +98,11 @@ class Resource extends Model
         $tags = $filters['tags'] ?? null;
 
         return $query
-            ->when($title, fn (Builder $query) => $query->where('title', 'like', "%{$title}%"))
+            ->when($title, fn (Builder $query) => $query->where('title', 'ilike', "%{$title}%"))
 
             ->when($techArea, fn (Builder $query) => $query->whereHas(
                 'techAreas',
-                fn ($query) => $query->where('name', 'like', "%{$techArea}%")
+                fn ($query) => $query->where('name', 'ilike', "%{$techArea}%")
             ))
             ->when(
                 $course,
@@ -110,7 +110,7 @@ class Resource extends Model
                 $query->whereHas(
                     'courses',
                     fn (Builder $query) =>
-                    $query->where('name', 'like', "%{$course}%")
+                    $query->where('name', 'ilike', "%{$course}%")
                 )
             )
             ->when(
@@ -119,7 +119,7 @@ class Resource extends Model
                 $query->whereHas(
                     'disciplines',
                     fn (Builder $query) =>
-                    $query->where('name', 'like', "%{$discipline}%")
+                    $query->where('name', 'ilike', "%{$discipline}%")
                 )
             )
             ->when(
@@ -128,7 +128,7 @@ class Resource extends Model
                 $query->whereHas(
                     'language',
                     fn (Builder $query) =>
-                    $query->where('name', 'like', "%{$language}%")
+                    $query->where('name', 'ilike', "%{$language}%")
                 )
             )
             ->when(
@@ -137,7 +137,7 @@ class Resource extends Model
                 $query->whereHas(
                     'tags',
                     fn (Builder $query) =>
-                    $query->where('name', 'like', "%{$tags}%")
+                    $query->where('name', 'ilike', "%{$tags}%")
                 )
             )->latest('updated_at');
     }
