@@ -128,14 +128,12 @@ class ResourceService
         $tags = $data['tags'];
         $image = $data['image'] ?? null;
         $visibility = $data['visibility'];
-        $user = auth()->user();
 
         DB::beginTransaction();
         try {
             $resource->title = $title;
             $resource->language()->associate($language);
             $resource->visibility = $visibility;
-            $resource->user()->associate($user);
             $resource->save();
 
             if ($file) {
