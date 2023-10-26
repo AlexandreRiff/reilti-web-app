@@ -40,7 +40,7 @@ class HtmlResourceFile extends ResourceFile
                     // * remove the first /
                     $fileInitial = Str::after($fileInitial, '/');
 
-                    $fileExists = array_search($fileInitial, $zip->listFiles());
+                    $fileExists = in_array($fileInitial, $zip->listFiles());
 
                     if (!$fileExists) {
                         $validator->errors()->add(
