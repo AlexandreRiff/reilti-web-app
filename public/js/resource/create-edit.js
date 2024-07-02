@@ -90,7 +90,10 @@ const listFilesZip = (event) => {
     const file = event.currentTarget.files[0];
     const reader = new FileReader();
 
-    if (file.type == "application/x-zip-compressed") {
+    if (
+        file.type == "application/x-zip-compressed" ||
+        file.type == "application/zip"
+    ) {
         reader.readAsArrayBuffer(file);
 
         reader.onload = (event) => {
