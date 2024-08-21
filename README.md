@@ -40,10 +40,10 @@ git clone https://github.com/AlexandreRiff/reilti-web-app.git
 cd reilti-web-app
 ```
 
-3. Execute o docker:
+3. Execute o script:
 
 ```bash
-cd docker/dev && docker-compose up -d --build
+sh docker-dev.sh
 ```
 
 ## 🧩 LTI
@@ -64,7 +64,7 @@ LTIAAS_KEY=
 -   Acesse a aplicação no seu navegador:
 
 ```
-http://localhost/login
+http://localhost:8000/login
 ```
 
 Utilize as seguintes credenciais:

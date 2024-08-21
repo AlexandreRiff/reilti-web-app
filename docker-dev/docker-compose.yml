@@ -1,0 +1,115 @@
+services:
+    php:
+        build:
+            context: .
+            target: php
+            args:
+                HOST_UID: "${HOST_UID}"
+        platform: linux/amd64
+        image: reilti-php
+        container_name: reilti-php
+        environment:
+            DB_CONNECTION: pgsql
+            DB_HOST: reilti-db
+            DB_PORT: 5432
+            DB_USERNAME: reilti
+            DB_PASSWORD: reilti
+
+            CACHE_DRIVER: redis
+            QUEUE_CONNECTION: redis
+            SESSION_DRIVER: redis
+
+            REDIS_HOST: reilti-redis
+            REDIS_PASSWORD: reilti
+
+            MAIL_HOST: reilti-mail
+        volumes:
+            - ..:/usr/src/app
+        ports:
+            - 8000:8000
+        networks:
+            - db
+            - redis
+            - npm
+            - mail
+        depends_on:
+            db:
+                condition: service_healthy
+            redis:
+                condition: service_healthy
+
+    npm:
+        build:
+            context: .
+            target: npm
+            args:
+                HOST_UID: "${HOST_UID}"
+        platform: linux/amd64
+        image: reilti-npm
+        container_name: reilti-npm
+        volumes:
+            - ..:/usr/src/app
+        ports:
+            - 5173:5173
+        networks:
+            - npm
+        restart: on-failure
+
+    db:
+        platform: linux/amd64
+        image: postgres:latest
+        container_name: reilti-db
+        environment:
+            POSTGRES_DB: reilti
+            POSTGRES_USER: reilti
+            POSTGRES_PASSWORD: reilti
+        volumes:
+            - ./tmp/postgres-volume:/var/lib/postgresql/data
+        ports:
+            - 5432:5432
+        networks:
+            - db
+        restart: on-failure
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready"]
+            interval: 5s
+            timeout: 10s
+            retries: 3
+
+    redis:
+        image: redis:alpine
+        container_name: reilti-redis
+        command: "redis-server --requirepass reilti"
+        volumes:
+            - ./tmp/redis-volume:/data
+        ports:
+            - 6379:6379
+        networks:
+            - redis
+        restart: on-failure
+        healthcheck:
+            test: ["CMD", "redis-cli", "ping"]
+            interval: 5s
+            timeout: 10s
+            retries: 3
+
+    mail:
+        image: mailhog/mailhog
+        platform: linux/amd64
+        container_name: reilti-mail
+        ports:
+            - 1025:1025
+            - 8025:8025
+        networks:
+            - mail
+        restart: on-failure
+
+networks:
+    db:
+        driver: bridge
+    redis:
+        driver: bridge
+    npm:
+        driver: bridge
+    mail:
+        driver: bridge

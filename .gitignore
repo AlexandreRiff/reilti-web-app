@@ -17,5 +17,4 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-postgres-volume
-redis-volume
+docker-dev/tmp
