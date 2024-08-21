@@ -11,8 +11,9 @@ storage/logs/*
 vendor/
 node_modules/
 
-docker/
-!docker/configs/
+docker-dev/
+!docker-dev/configs/
+!docker-dev/scripts/
 
 k8s/
 
@@ -21,14 +22,9 @@ helm/
 .git/
 .git*
 
-#.env*
+.env
 
 .editorconfig
 .dockerignore
 
 README.md
-
-railway.toml
-
-postgres-volume
-redis-volume
